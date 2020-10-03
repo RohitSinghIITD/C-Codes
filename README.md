@@ -1,2 +1,4 @@
 # C-Codes
-C codes for hacktober
+Hello everyone this repo is open for contribution of C codes from around the globe.
+
+Feel free to contribute.
