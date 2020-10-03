@@ -1,0 +1,112 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *link;
+}*head;
+void count_node();
+void create_list(int n);
+void new_element_at_start();
+void n_elements_at_start();
+void new_element_at_end();
+int main()
+{
+  int n,a;
+  int i=0;
+  while(i==0)
+  {
+  printf("Enter your choice: \n1.Insert n elements.\n2.Display\n3.exit\n4.Insert an element at start of list.\n5.Insert an element at end of list.\n");
+  scanf("%d",&a);
+switch(a)
+{
+    case 1:printf("Enter the total number of nodes: ");
+                 scanf("%d", &n);
+            create_list(n);
+            break;
+    case 2:printf("\nData in the list \n");
+             count_node();
+             break;
+    case 3:i=1;
+            break;
+    case 4:new_element_at_start();
+            break;
+    case 5:new_element_at_end();
+            break;
+}
+   } 
+
+    
+
+    return 0;
+}
+void count_node()
+{
+    struct node *ptr=NULL;
+    int count=0;
+    if(head==NULL)
+    {
+        printf("list is empty\n");
+    }
+    ptr=head;
+    while(ptr!=NULL)
+    {
+        printf("Data %d:%d\n",(++count),(ptr->data));
+        ptr=ptr->link;
+    }
+    printf("Count is %d.",count);
+}
+void create_list(int n)
+{
+    struct node *tmp,*new_node;
+    int data;
+    if(n>0)
+ {   
+    head=malloc(sizeof(struct node));
+    printf("Enter data in node 1:");
+    scanf("%d",&data);
+    head->data=data;
+    head->link=NULL;
+    tmp=head;
+}
+    for(int i = 1 ;i<n;i++)
+    {
+        new_node=malloc(sizeof(struct node));
+        printf("Enter data in node %d:",(i+1));
+        scanf("%d",&data);
+        new_node->data=data;
+        new_node->link=NULL;
+        tmp->link=new_node;
+        tmp=tmp->link;
+    }
+}
+void new_element_at_start()
+{
+    struct node *tmp,*new_node_start;
+    int data;
+    tmp=head;
+    new_node_start=malloc(sizeof(struct node));
+    printf("Enter elements to be inserted:");
+    scanf("%d",&data);
+    new_node_start->data=data;
+    head=new_node_start;
+    new_node_start->link=tmp;
+    tmp=tmp->link;
+    printf("%d",tmp->link);
+}
+void new_element_at_end()
+{
+    struct node *tmp,*new_node,*ptr;
+    int data,i=0;
+    tmp=head;
+    printf("Enter element to be inserted at the end of list:");
+    scanf("%d",&data);
+    new_node=malloc(sizeof(struct node));
+    new_node->data=data;
+    new_node->link=NULL;
+    ptr=new_node;
+    while(tmp->link!=NULL)
+    {
+        tmp=tmp->link;
+    }
+    tmp->link=ptr;
+}
