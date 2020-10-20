@@ -1,0 +1,36 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:profile_app_ui/Animation/FadeAnimation.dart';
+import 'package:profile_app_ui/second_screen.dart';
+import 'package:profile_app_ui/services/authenication-service.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:profile_app_ui/pages/login-page.dart';
+import 'package:profile_app_ui/pages/signup_page.dart';
+import 'package:profile_app_ui/Functions_and_route.dart';
+import 'dart:convert';
+import 'package:profile_app_ui/constants.dart';
+import 'package:profile_app_ui/utility/router.dart';
+
+final storage = FlutterSecureStorage();
+final token = storage.read(key: "jwt");
+int check;
+
+//Main function to check internet and token before routing
+
+void main() async {
+  await auth_trail();
+}
+
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: LoginPage()
+    );
+  }
+}
